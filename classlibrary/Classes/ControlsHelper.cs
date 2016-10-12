@@ -1,4 +1,8 @@
-﻿using System.Windows.Forms;
+﻿/* 
+ * A class to support all control functions. For example clearing a bunch of textboxes. 
+ */
+
+using System.Windows.Forms;
 
 namespace ClassLibrary.Classes
 {

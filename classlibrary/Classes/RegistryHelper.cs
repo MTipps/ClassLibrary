@@ -1,4 +1,8 @@
-﻿using Microsoft.Win32;
+﻿/* 
+ * A class to easily read and write to a registry key
+ */
+
+using Microsoft.Win32;
 using System;
 using System.Windows.Forms;
 
@@ -33,10 +37,9 @@ namespace ClassLibrary.Classes
         public static string ReadFromRegistry(string registryKey, string valueName)
         {
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(registryKey);
-            return Encryption.Decrypt((string)regKey.GetValue(valueName));
+            return (string)regKey.GetValue(valueName);
         }
 
         #endregion Methods
-
     }
 }

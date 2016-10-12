@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* 
+ * All general validation that we use everyday can be found in this class. A message will be returned to be used with the 
+ * custom error provider.
+ */
+
+using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;

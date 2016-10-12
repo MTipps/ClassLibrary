@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿/* 
+ * Custom progressbar to have a different progress bar colour.
+ */
+
+ // TODO: Add a property to be able to select the colour.
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClassLibrary.User_Controls
@@ -16,7 +14,7 @@ namespace ClassLibrary.User_Controls
         {
             this.SetStyle(ControlStyles.UserPaint, true);
         }
-        
+
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rec = e.ClipRectangle;
