@@ -13,7 +13,8 @@ namespace ClassLibrary.Classes
     {
         #region Variables
 
-        private static string _registryKey;
+        private static string _serverName;
+        private static string _databaseName;
         private static string _userName;
         private static string _password;
 
@@ -29,12 +30,14 @@ namespace ClassLibrary.Classes
 
         #region Constructor
 
-        // string registryKey: The registry key where the database information is stored.
+        // string serverName: The name of the server to connect in SQL
+        // string databaseName: The name of the database to connect in SQL
         // string userName: The username to connect to SQL
         // string password: The password to connect to SQL
-        public SQLHelper(string registryKey, string userName, string password)
+        public SQLHelper(string userName, string password, string serverName, string databaseName)
         {
-            _registryKey = registryKey;
+            _serverName = serverName;
+            _databaseName = databaseName;
             _userName = userName;
             _password = password;
         }
@@ -46,8 +49,8 @@ namespace ClassLibrary.Classes
         // Function that creates the connection to the SQL database
         private static SqlConnection SQLConnect()
         {
-            return new SqlConnection("Data Source=" + RegistryHelper.ReadFromRegistry(_registryKey, "ServerName") + ";Initial Catalog=" +
-                                                    RegistryHelper.ReadFromRegistry(_registryKey, "DatabaseName") + ";User ID=" + _userName + ";Password=" + _password);
+            return new SqlConnection("Data Source=" + _serverName + ";Initial Catalog=" +
+                                                    _databaseName + ";User ID=" + _userName + ";Password=" + _password);
         }
 
         private static SqlCommand SQLCommand(string query)
