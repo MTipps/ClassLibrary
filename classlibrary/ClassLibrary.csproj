@@ -66,28 +66,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\error16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\error16.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\checkmark16.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delete16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plus16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\database32.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save16.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,13 +1,13 @@
-﻿/* 
- * Custom progressbar with the following features:
- *      - Change progressbar colour
- */
-
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace ClassLibrary.User_Controls
 {
+    /// <summary>
+    /// Custom progressbar with the following features:
+    /// - Change progressbar colour
+    /// </summary>
     public partial class ProgressBar_Custom : ProgressBar
     {
         private Color _progressbarColor;
@@ -17,6 +17,7 @@ namespace ClassLibrary.User_Controls
             this.SetStyle(ControlStyles.UserPaint, true);
         }
 
+        [Description("Choose a custom colour for the progressbar"), Category("Appearance")]
         public Color ProgressbarColor
         {
             get { return _progressbarColor; }
