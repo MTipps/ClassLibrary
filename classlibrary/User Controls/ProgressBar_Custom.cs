@@ -1,29 +1,38 @@
 ﻿/* 
- * Custom progressbar to have a different progress bar colour.
+ * Custom progressbar with the following features:
+ *      - Change progressbar colour
  */
 
- // TODO: Add a property to be able to select the colour.
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace ClassLibrary.User_Controls
 {
-    public partial class ProgressBarColor : ProgressBar
+    public partial class ProgressBar_Custom : ProgressBar
     {
-        public ProgressBarColor()
+        private Color _progressbarColor;
+
+        public ProgressBar_Custom()
         {
             this.SetStyle(ControlStyles.UserPaint, true);
+        }
+
+        public Color ProgressbarColor
+        {
+            get { return _progressbarColor; }
+            set { _progressbarColor = value; }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rec = e.ClipRectangle;
+            SolidBrush brush = new SolidBrush(_progressbarColor);
 
             rec.Width = (int)(rec.Width * ((double)Value / Maximum)) - 4;
             if (ProgressBarRenderer.IsSupported)
                 ProgressBarRenderer.DrawHorizontalBar(e.Graphics, e.ClipRectangle);
             rec.Height = rec.Height - 4;
-            e.Graphics.FillRectangle(Brushes.Maroon, 2, 2, rec.Width, rec.Height);
+            e.Graphics.FillRectangle(brush, 2, 2, rec.Width, rec.Height);
         }
     }
 }

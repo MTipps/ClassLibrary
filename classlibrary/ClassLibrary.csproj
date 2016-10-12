@@ -52,11 +52,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="User Controls\ProgressBarColor.cs">
+    <Compile Include="User Controls\ProgressBar_Custom.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="User Controls\ProgressBarColor.Designer.cs">
-      <DependentUpon>ProgressBarColor.cs</DependentUpon>
+    <Compile Include="User Controls\ProgressBar_Custom.Designer.cs">
+      <DependentUpon>ProgressBar_Custom.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
