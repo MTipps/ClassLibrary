@@ -8,8 +8,20 @@ namespace ClassLibrary
 {
     public class ErrorProvider
     {
+        #region Variables
+        private static System.Drawing.Icon _iconTrue;
+        private static System.Drawing.Icon _iconFalse;
+        #endregion Variables
+
+        #region Constructor
+        public ErrorProvider(System.Drawing.Icon iconTrue, System.Drawing.Icon iconFalse)
+        {
+            _iconTrue = iconTrue;
+            _iconFalse = iconFalse;
+        }
+        #endregion Constructor
+
         #region Methods
-        //TODO: Add a way to use different coloured images to support different themes
         // Function will return an error provider with the correct icon for when the a correct or incorrect validation
         public static System.Windows.Forms.ErrorProvider SetErrorProvider(string errorMessage)
         {
@@ -19,12 +31,12 @@ namespace ClassLibrary
             // otherwise we show a warning
             if (errorMessage == "Correct")
             {
-                newProvider.Icon = Properties.Resources.checkmark16;
+                newProvider.Icon = _iconTrue;
                 newProvider.Tag = "True";
             }
             else
             {
-                newProvider.Icon = Properties.Resources.error16;
+                newProvider.Icon = _iconFalse;
                 newProvider.Tag = "False";
             }
 
