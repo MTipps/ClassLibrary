@@ -1,16 +1,13 @@
-﻿/*
- * This class is to remove the strain from the SQL database and have one place to everything SQL related. 
- * Queries will also be built dynamically to avoid re-using to much code.
- */
-
- // TODO: Change this file to use all types of databases
-
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace ClassLibrary.Classes
 {
+    /// <summary>
+    /// This class is to remove the strain from the SQL database and have one place to everything SQL related.
+    /// Queries will also be built dynamically to avoid re-using to much code.
+    /// </summary>
     public class SQLHelper
     {
         #region Variables
@@ -32,10 +29,13 @@ namespace ClassLibrary.Classes
 
         #region Constructor
 
-        // string serverName: The name of the server to connect in SQL
-        // string databaseName: The name of the database to connect in SQL
-        // string userName: The username to connect to SQL
-        // string password: The password to connect to SQL
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="userName">The name of the server to connect in SQL</param>
+        /// <param name="password">The name of the database to connect in SQL</param>
+        /// <param name="serverName">The username to connect to SQL</param>
+        /// <param name="databaseName">The password to connect to SQL</param>
         public SQLHelper(string userName, string password, string serverName, string databaseName)
         {
             _serverName = serverName;
@@ -48,13 +48,21 @@ namespace ClassLibrary.Classes
 
         #region SQL Connections
 
-        // Function that creates the connection to the SQL database
+        /// <summary>
+        /// Function that creates the connection to the SQL database
+        /// </summary>
+        /// <returns>The SQL connection</returns>
         private static SqlConnection SQLConnect()
         {
             return new SqlConnection("Data Source=" + _serverName + ";Initial Catalog=" +
                                                     _databaseName + ";User ID=" + _userName + ";Password=" + _password);
         }
 
+        /// <summary>
+        /// Create the SQL Command
+        /// </summary>
+        /// <param name="query">The SQL query that needs to be run</param>
+        /// <returns>The SQL Command</returns>
         private static SqlCommand SQLCommand(string query)
         {
             return new SqlCommand(query, SQLConnect());
@@ -64,7 +72,11 @@ namespace ClassLibrary.Classes
 
         #region SQL Database Calls
 
-        // Function that retrieves a list of data from the database and returns this information in a datatable
+        /// <summary>
+        /// Function that retrieves a list of data from the database and returns this information in a datatable
+        /// </summary>
+        /// <param name="query">The SELECT query that needs to be run</param>
+        /// <returns>Datatable with data from the SQL database</returns>
         public static DataTable GetList(string query)
         {
             DataTable dt = new DataTable();
@@ -78,7 +90,11 @@ namespace ClassLibrary.Classes
 
         #region SQL Queries
 
-        // A function that creates the different types of queries and returns the string
+        /// <summary>
+        /// A function that dynamically creates SQL queries
+        /// </summary>
+        /// <param name="queryType">Values can be: Select, Insert, Update or Delete</param>
+        /// <returns>The SQL query</returns>
         public static string CreateQuery(string queryType)
         {
             string query = "";
@@ -117,9 +133,13 @@ namespace ClassLibrary.Classes
             return query;
         }
 
-        // SELECT <fields>: Comma seperated string (field1, field2, field3)
-        // INSERT INTO (<fields>): Comma seperated string (field1, field2, field3)
-        // UPDATE <table> SET <fields> = <values>: Comma seperated string with values (field1 = value1, field2 = value2, field3 = value3)
+        /// <summary>
+        /// The query fields array will be put into a comma delimited string
+        /// SELECT <fields>: Comma seperated string (field1, field2, field3)
+        /// INSERT INTO (<fields>): Comma seperated string (field1, field2, field3)
+        /// UPDATE <table> SET <fields> = <values>: Comma seperated string with values (field1 = value1, field2 = value2, field3 = value3)
+        /// </summary>
+        /// <returns>Comma delimited string</returns>
         private static string SelectInsertUpdateFieldsCreate()
         {
             string query = "";
@@ -137,7 +157,11 @@ namespace ClassLibrary.Classes
             return query + Environment.NewLine;
         }
 
-        // INSERT INTO <fields> VALUES <values>: Comma seperated string with values (value1, value2, value3)
+        /// <summary>
+        /// The values for the INSERT query. The array will be converted to a comma delimited string
+        /// INSERT INTO <fields> VALUES <values>: Comma seperated string with values (value1, value2, value3)
+        /// </summary>
+        /// <returns>Comma delimited string</returns>
         private static string InsertValuesCreate()
         {
             string query = "";
@@ -155,9 +179,12 @@ namespace ClassLibrary.Classes
             return query + Environment.NewLine;
         }
 
-        // Creates all the different types of JOINS from an array into a string
-        // INNER JOIN <table> ON <field1> = <field2> / LEFT INNER JOIN <table> ON <field1> = <field2> / RIGHT INNER JOIN <table> ON <field1> = <field2>
-        // OUTER JOIN <table> ON <field1> = <field2> / LEFT OUTER JOIN <table> ON <field1> = <field2> / RIGHT OUTER JOIN <table> ON <field1> = <field2>
+        /// <summary>
+        /// Creates all the different types of JOINS from an array into a string
+        /// INNER JOIN <table> ON <field1> = <field2> / LEFT INNER JOIN <table> ON <field1> = <field2> / RIGHT INNER JOIN <table> ON <field1> = <field2>
+        /// OUTER JOIN <table> ON <field1> = <field2> / LEFT OUTER JOIN <table> ON <field1> = <field2> / RIGHT OUTER JOIN <table> ON <field1> = <field2>
+        /// </summary>
+        /// <returns>Join string</returns>
         private static string JoinsCreate()
         {
             string query = "";
@@ -174,8 +201,11 @@ namespace ClassLibrary.Classes
             return query;
         }
 
-        // Creates the different WHERE conditions from an array into a string
-        // WHERE <field> = <text> AND <field> = <number>
+        /// <summary>
+        /// Creates the different WHERE conditions from an array into a string
+        /// WHERE <field> = <text> AND <field> = <number>
+        /// </summary>
+        /// <returns>Where string</returns>
         private static string WhereCreate()
         {
             string query = "";
@@ -192,7 +222,10 @@ namespace ClassLibrary.Classes
             return query + Environment.NewLine;
         }
 
-        // ORDER BY <fields>: Comma seperated string (field1, field2, field3)
+        /// <summary>
+        /// ORDER BY <fields>: Comma seperated string (field1, field2, field3)
+        /// </summary>
+        /// <returns>Order By string</returns>
         private static string OrderByCreate()
         {
             string query = "";
@@ -216,7 +249,10 @@ namespace ClassLibrary.Classes
             return query;
         }
 
-        // GROUP BY <fields>: Comma seperated string (field1, field2, field3)
+        /// <summary>
+        /// GROUP BY <fields>: Comma seperated string (field1, field2, field3)
+        /// </summary>
+        /// <returns>Group By string</returns>
         private static string GroupByCreate()
         {
             string query = "";
