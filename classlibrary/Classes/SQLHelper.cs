@@ -3,6 +3,8 @@
  * Queries will also be built dynamically to avoid re-using to much code.
  */
 
+ // TODO: Change this file to use all types of databases
+
 using System;
 using System.Data;
 using System.Data.SqlClient;
